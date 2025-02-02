@@ -26,13 +26,15 @@ def get_value(model):
 
 
 for i in range(2, max_row + 1):
-    model = sheet.cell(row=i, column=1).value
-    value = get_value(model)
+    model = sheet.cell(row=i, column=1).value 
     if model in malfunction:
+        value = get_value(model)
         sheet.cell(column=3, row=i, value=value)
-
+    else:
+        sheet.cell(column=3, row=i, value='Неустранимые загрязнения')
 
 
 wb.save('Утиль.xlsx')
 wb.close()
 
+print('Готово')
