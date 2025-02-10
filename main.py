@@ -2,6 +2,7 @@ import openpyxl as xl
 import numpy
 from random import randint
 from dict import malfunction
+
 __author__ = "Chepik Pavel"
 __version__ = "0.1"
 
