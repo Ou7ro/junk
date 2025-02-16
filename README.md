@@ -43,7 +43,3 @@ pip install -r requirements.txt
 python main.py 
 ```
 
-## Цели проекта
-
-Код написан в учебных целях — это урок в курсе по Python и веб-разработке на сайте [Devman](https://dvmn.org).
-
