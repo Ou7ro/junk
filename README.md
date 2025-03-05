@@ -50,7 +50,7 @@ pip install -r requirements.txt
 python main.py 
 ```
 
-##Выходные данные
+## Выходные данные
 
 В консоли будет надпись `готово`.
 
