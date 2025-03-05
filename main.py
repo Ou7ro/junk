@@ -1,19 +1,20 @@
 import openpyxl as xl
-from random import randint
+from random import choices
 from dict import malfunction
 
 
 def get_value(model):
-    value = f'{malfunction[model][randint(0, 3)]}, {malfunction[model][randint(4, 7)]}'
-    return value
+    value = choices(malfunction[model], k=2)
+    values = f'{value[0]}, {value[1]}'
+    return values
 
 
 def added_reasons(sheet, max_row):
     for i in range(2, max_row + 1):
         model = sheet.cell(row=i, column=1).value
         if model in malfunction:
-            value = get_value(model)
-            sheet.cell(column=3, row=i, value=value)
+            values = get_value(model)
+            sheet.cell(column=3, row=i, value=values)
         else:
             sheet.cell(column=3, row=i, value='Неустранимые загрязнения')
 
