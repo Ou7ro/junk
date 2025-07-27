@@ -8,6 +8,7 @@ import sys
 DEFAULT_FILENAME = 'Утиль.xlsx'
 DEFAULT_REASON = 'Неустранимые загрязнения'
 
+
 def get_malfunction_description(model: str) -> str:
     """Возвращает строку с описанием неисправности для указанной модели."""
     try:
@@ -16,11 +17,13 @@ def get_malfunction_description(model: str) -> str:
     except KeyError:
         return DEFAULT_REASON
 
+
 def add_malfunction_reasons(sheet: xl.worksheet.worksheet.Worksheet) -> None:
     """Добавляет причины неисправностей в третий столбец таблицы."""
     for row in range(2, sheet.max_row + 1):
         model = sheet.cell(row=row, column=1).value
         sheet.cell(row=row, column=3).value = get_malfunction_description(model)
+
 
 def parse_arguments():
     """Парсит аргументы командной строки."""
@@ -34,6 +37,7 @@ def parse_arguments():
     )
     return parser.parse_args()
 
+
 def process_workbook(file_path: Path) -> None:
     """Обрабатывает файл Excel."""
     wb = xl.load_workbook(file_path, data_only=True)
@@ -42,6 +46,7 @@ def process_workbook(file_path: Path) -> None:
     wb.close()
     print(f'Файл {file_path} успешно обработан')
 
+
 def create_default_file(file_path: Path) -> None:
     """Создает файл по умолчанию, если он не существует."""
     wb = xl.Workbook()
@@ -49,17 +54,18 @@ def create_default_file(file_path: Path) -> None:
     wb.close()
     print(f"Создан новый файл: {file_path}")
 
+
 def main() -> None:
     """Основная функция выполнения скрипта с обработкой исключений."""
     try:
         args = parse_arguments()
         file_path = Path(args.path)
-        
+
         if not file_path.exists():
             create_default_file(file_path)
-        
+
         process_workbook(file_path)
-        
+
     except FileNotFoundError as e:
         print(f'Ошибка: Файл не найден - {e.filename}', file=sys.stderr)
         sys.exit(1)
@@ -75,6 +81,7 @@ def main() -> None:
     except Exception as e:
         print(f'Непредвиденная ошибка: {str(e)}', file=sys.stderr)
         sys.exit(1)
+
 
 if __name__ == '__main__':
     main()
