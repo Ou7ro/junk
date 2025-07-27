@@ -60,3 +60,11 @@ python main.py
 Пример:
 
 ![image](https://github.com/user-attachments/assets/4f221c39-d430-4d68-9c38-32dd8f8e8460)
+
+## Аргументы командной строки
+
+`-p` и `-path` - указать путь до excel файла, по умолчанию ипсользуется файл из директории проекта `Утиль.xlsx`
+
+Пример:
+
+`python main.py -p "Мой_файл.xlsx"`
